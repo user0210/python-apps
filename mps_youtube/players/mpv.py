@@ -1,14 +1,13 @@
-import os
-import sys
-import tempfile
-import subprocess
 import json
+import os
 import re
 import socket
+import subprocess
+import sys
+import tempfile
 import time
 
-from .. import g, screen, c, paths, config, util
-
+from .. import c, config, g, paths, screen, util
 from ..player import CmdPlayer
 
 mswin = os.name == "nt"
@@ -185,7 +184,7 @@ class mpv(CmdPlayer):
                         observe_full = True
 
                     if resp.get('event') == 'property-change' and resp['id'] == 1:
-                        if resp['data'] is not None:
+                        if resp.get('data') is not None:
                             elapsed_s = int(resp['data'])
 
                     elif resp.get('event') == 'property-change' and resp['id'] == 2:
